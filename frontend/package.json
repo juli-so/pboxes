@@ -1,0 +1,18 @@
+{
+  "name": "pboxes",
+  "version": "1.0.0",
+  "description": "Boxes on page everywhere.",
+  "keywords": [
+    "box",
+    "page",
+    "comment"
+  ],
+  "author": "Gerald <i@gerald.top>",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-uglify": "^1.2.0"
+  }
+}
