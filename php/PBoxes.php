@@ -32,7 +32,7 @@ class PBoxes {
 
 	public function _get($url, $limit = 100) {
 		$db = Flight::db();
-		$res = $db -> select('notes', [
+		$res = $db -> select('pboxes', [
 			'id',
 			'x',
 			'y',
@@ -66,7 +66,7 @@ class PBoxes {
 		$color = (int) $color;
 		if ($x < 0 || $x > 100 || $y < 0 || mb_strlen($text) < 4) self::finish();
 		$db = Flight::db();
-		$r = $db -> insert('notes', [
+		$r = $db -> insert('pboxes', [
 			'url' => $url,
 			'x' => $x,
 			'y' => $y,
@@ -88,7 +88,7 @@ class PBoxes {
 	public function _thumbUp($id) {
     $this->_checkFreq();
 		$db = Flight::db();
-		$r = $db -> update('notes', [
+		$r = $db -> update('pboxes', [
 			'thumbs[+]' => 1,
 		], [
 			'id' => $id,
