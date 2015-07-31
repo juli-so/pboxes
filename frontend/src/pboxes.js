@@ -54,12 +54,14 @@
    *     callbacks.error {Function}
    *         @param message {String}
    *         Send an error message
+   * @param page_id {String} The ID of current page, default as location.pathname
    */
-  function Boxes(frame, urls, callbacks) {
+  function Boxes(frame, urls, callbacks, page_id) {
     var _this = this;
     _this.$obj = frame;
     _this.urls = urls;
     _this.callbacks = callbacks || {};
+    _this.page_id = page_id || location.pathname;
     _this.bindEvents();
     _this.load();
   }
@@ -105,7 +107,7 @@
             .html(loader)
             .prependTo(text);
           $.post(_this.urls.add, {
-            url: location.pathname,
+            url: _this.page_id,
             x: x,
             y: y,
             color: color,
@@ -159,7 +161,7 @@
   Boxes.prototype.load = function () {
     var _this = this;
     $.post(_this.urls.get, {
-      url: location.pathname,
+      url: _this.page_id,
     }, function (ret) {
       if (!ret.code)
         $.each(ret.data, function(i, data) {_this.loadBox(data);});
@@ -228,8 +230,8 @@
   }
 
   // Add as a jQuery plugin
-  $.fn.pboxes = function (urls, callbacks) {
-    new Boxes(this, urls, callbacks);
+  $.fn.pboxes = function (urls, callbacks, page_id) {
+    new Boxes(this, urls, callbacks, page_id);
     return this;
   };
 }();
