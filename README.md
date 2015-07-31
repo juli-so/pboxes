@@ -27,3 +27,8 @@ Backend
 ---
 * **PHP**  
   currently requires [Flight](http://flightphp.com), [Medoo](http://medoo.in)
+
+Todo
+---
+* Remove dependencies in PHP version
+* Add backend for Python
