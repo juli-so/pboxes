@@ -118,7 +118,9 @@
               id: ret.data,
               text: value,
               thumbs: 0,
-            }, box);
+            }, box)
+              .find('.pbox-input')
+              .removeClass('pbox-input');
           }, 'json').fail(function () {
             fail('出错了……看来施主跟本站没有缘分。。');
           });
@@ -227,6 +229,7 @@
         .text(data.thumbs || '');
       box.data('id', data.id);
     }
+    return box;
   }
 
   // Add as a jQuery plugin
