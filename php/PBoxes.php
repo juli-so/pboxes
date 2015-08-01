@@ -1,16 +1,17 @@
 <?php
 class PBoxes {
-  private function __construct() {
-    $this -> ret = [
-      'code' => -1,
-      'data' => '我书读得少，你不要骗我。',
-    ];
-  }
-  private static $instance;
-  private $ret;
-  private function finish() {
-    Flight::json($this -> ret);
-  }
+	private function __construct() {
+		$this -> ret = [
+			'code' => -1,
+			'data' => '我书读得少，你不要骗我。',
+		];
+	}
+	private static $instance;
+	private $ret;
+	private function finish() {
+    header('Content-Type: application/json');
+		die(json_encode($this -> ret));
+	}
 
   private function _checkFreq() {
     if (session_status() !== PHP_SESSION_ACTIVE) session_start();
