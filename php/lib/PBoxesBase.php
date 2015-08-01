@@ -1,5 +1,5 @@
 <?php
-class PBoxes {
+class PBoxesBase {
 	private function __construct() {
 		$this->ret = [
 			'code' => -1,
@@ -12,7 +12,7 @@ class PBoxes {
    * @return a PDO object
    */
   protected static function pdo() {
-    throw 'Not implemented!'
+    throw new Exception('Not implemented!');
   }
 
 	private static $instance;
@@ -35,14 +35,14 @@ class PBoxes {
 
   public static function __callStatic($name, $params) {
     if (!isset(self::$instance)) {
-      $cls = __CLASS__;
+      $cls = get_called_class();
       self::$instance = new $cls;
     }
     call_user_func_array(array(self::$instance, '_' . $name), $params);
   }
 
   public function _get($url, $limit = 100) {
-    $pdo = self::pdo();
+    $pdo = $this->pdo();
     $st = $pdo->prepare('SELECT id,x,y,color,text,thumbs FROM pboxes WHERE url=? ORDER BY id DESC LIMIT ?');
     $st->execute([$url, $limit]);
     $res = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -67,7 +67,7 @@ class PBoxes {
     $y = number_format($y, 2, '.', ''); // pixels
     $color = (int) $color;
     if ($x < 0 || $x > 100 || $y < 0 || mb_strlen($text) < 4) $this->finish();
-    $pdo = self::pdo();
+    $pdo = $this->pdo();
     $st = $pdo->prepare('INSERT INTO pboxes (url,x,y,color,text,ip) VALUES(?,?,?,?,?,?)');
     $r = $st->execute([$url, $x, $y, $color, $text, $_SERVER['REMOTE_ADDR']]);
     if ($r) {
@@ -83,7 +83,7 @@ class PBoxes {
 
   public function _thumbUp($id) {
     $this->_checkFreq();
-    $pdo = self::pdo();
+    $pdo = $this->pdo();
     $st = $pdo->prepare('UPDATE pboxes SET thumbs=thumbs+1 WHERE id=?');
     $r = $st->execute([$id]);
     $this->ret['code'] = 0;

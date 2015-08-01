@@ -25,10 +25,8 @@ $('body').pboxes({
 
 Backend
 ---
-* **PHP**  
-  currently requires [Flight](http://flightphp.com), [Medoo](http://medoo.in)
+* **PHP**: No third party dependencies required
 
 Todo
 ---
-* Remove dependencies in PHP version
 * Add backend for Python
