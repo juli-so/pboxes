@@ -43,8 +43,10 @@ class PBoxesBase {
 
   public function _get($url, $limit = 100) {
     $pdo = $this->pdo();
-    $st = $pdo->prepare('SELECT id,x,y,color,text,thumbs FROM pboxes WHERE url=? ORDER BY id DESC LIMIT ?');
-    $st->execute([$url, $limit]);
+    $st = $pdo->prepare('SELECT id,x,y,color,text,thumbs FROM pboxes WHERE url=:url ORDER BY id DESC LIMIT :last');
+    $st->bindParam(':url', $url);
+    $st->bindParam(':last', $limit, PDO::PARAM_INT);
+    $st->execute();
     $res = $st->fetchAll(PDO::FETCH_ASSOC);
     $list = [];
     foreach ($res as $r)
