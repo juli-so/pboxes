@@ -8,20 +8,7 @@ Frontend
 ---
 Built as a [jQuery](http://jquery.com) plugin.
 
-Usage:
-``` javascript
-$('body').pboxes({
-  get: '/get',
-  add: '/add',
-  thumbup: '/thumbup',
-}, {
-  // getLoader: getLoaderHTML,
-  getThumbIcon: function (hasThumb) {
-    return hasThumbUp ? '已赞' : '赞';
-  },
-  error: console.log,
-});
-```
+See more details in [frontend](frontend).
 
 Backend
 ---
