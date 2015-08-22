@@ -1,55 +1,60 @@
-@pbox-size: 10px;
-.pbox-wrap {
-	position: absolute;
-	&:not(:hover) .pbox-text {
-		&:not(.pbox-input) {
-			display: none;
-		}
-	}
-}
-.pbox-dot {
-	// add position to support z-index
-	position: absolute;
-	top: -5px;
-	left: -5px;
-	z-index: 1;
-	width: @pbox-size;
-	height: @pbox-size;
-	border-radius: 3px;
-	box-shadow: 0 0 5px gray;
-	border: 1px solid white;
-}
-.pbox-text {
-	// add position to support z-index
-	position: relative;
-	z-index: 2;
-	margin-top: @pbox-size / 2 + 3px;
-	margin-left: -5px;
-	padding: @pbox-size / 2;
-	border-radius: @pbox-size / 2;
-	word-break: break-all;
-	opacity: 1;
-	transition: opacity 1s;
-	textarea {
-		height: 100px;
-		width: 120px;
-		background: rgba(255,255,255,.8);
-		color: black;
-	}
-}
-.pbox-content {
-	min-width: 100px;
-	max-width: 200px;
-}
-.pbox-fading {
-	opacity: 0;
-}
-.pbox-thumbs {
-	text-align: right;
-	i {
-		cursor: pointer;
-		&:hover {
-			text-shadow: 0 0 1px white;
-		}
-	}
+// Size of the little square box (.pbox-dot)
+@pbox-size: 12px;
+// Gap between the little square box and the box showing text
+@pbox-gap: 3px;
+
+.pbox {
+  &-wrap {
+    position: absolute;
+    &:not(:hover) .pbox-text {
+      &:not(.pbox-input) {
+        display: none;
+      }
+    }
+  }
+  &-dot {
+    position: absolute;
+    top: -@pbox-size / 2;
+    left: -@pbox-size / 2;
+    width: @pbox-size;
+    height: @pbox-size;
+    border-radius: 3px;
+    box-shadow: 0 0 5px gray;
+    border: 1px solid white;
+    z-index: 1;
+  }
+  &-text {
+    // add position to support z-index
+    position: relative;
+    z-index: 2;
+    margin-top: @pbox-size / 2 + @pbox-gap;
+    margin-left: -@pbox-size / 2;
+    padding: @pbox-size / 2;
+    border-radius: @pbox-size / 2;
+    word-break: break-all;
+    opacity: 1;
+    transition: opacity 1s;
+    textarea {
+      height: 100px;
+      width: 120px;
+      background: rgba(255,255,255,.8);
+      color: black;
+    }
+  }
+  &-content {
+    min-width: 100px;
+    max-width: 200px;
+  }
+  &-fading {
+    opacity: 0;
+  }
+  &-thumbs {
+    text-align: right;
+  }
+  &-icon {
+    cursor: pointer;
+    &:hover {
+      text-shadow: 0 0 1px white;
+    }
+  }
 }

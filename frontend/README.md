@@ -1,7 +1,7 @@
 pBoxes - JavaScript
 ===
 
-This the JavaScript part of pBoxes. It is built as a [jQuery](http://jquery.com) plugin.
+This is the JavaScript part of pBoxes. It is built as a [jQuery](http://jquery.com) plugin.
 
 Usage
 ---
